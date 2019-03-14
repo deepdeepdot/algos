@@ -4,17 +4,17 @@
 class Solution {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return addTwoNumbers(l1, l2, 0);
+        return addTwoNumbers(l1, l2, false);
     }
 
-    ListNode addTwoNumbers(ListNode l1, ListNode l2, int overflow) {
+    ListNode addTwoNumbers(ListNode l1, ListNode l2, boolean overflow) {
         if (l1 != null && l2 != null) {
-            int sum = l1.val + l2.val + overflow;
+            int sum = l1.val + l2.val + (overflow? 1 : 0);
             ListNode node = new ListNode(sum % 10);
-            node.next = addTwoNumbers(l1.next, l2.next, (sum / 10));
+            node.next = addTwoNumbers(l1.next, l2.next, sum > 9);
             return node;
         }
-        if (overflow == 1) {
+        if (overflow) {
             // overflow case, with one of the list as empty
             return addTwoNumbers(l1 != null? l1: l2, new ListNode(0), overflow);
         }
