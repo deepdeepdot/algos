@@ -24,19 +24,20 @@ class Solution {
     // Duplicate mini-permutations!
     int[] subSelection(int[] source, int removedIdx) {
         int[] result = new int[source.length-1];
-        // int j = 0;
-        // for (int i = 0; i < source.length; i++) {
-        //     if (i != removedIdx) {
-        //         result[j++] = source[i];
-        //     }
+        int j = 0;
+        for (int i = 0; i < source.length; i++) {
+            if (i != removedIdx) {
+                result[j++] = source[i];
+            }
+        }
+        // More optimized, but indexes are tricky to get right, code is not clear
+        // if (removedIdx > 0) {
+        //     System.arraycopy(source, 0, result, 0, removedIdx);
         // }
-        if (removedIdx > 0) {
-            System.arraycopy(source, 0, result, 0, removedIdx);
-        }
-        if (removedIdx != source.length-1) {
-            int len = source.length-removedIdx-1;
-            System.arraycopy(source, removedIdx+1, result, removedIdx, len);
-        }
+        // if (removedIdx != source.length-1) {
+        //     int len = source.length-removedIdx-1;
+        //     System.arraycopy(source, removedIdx+1, result, removedIdx, len);
+        // }
         return result;
     }
 
